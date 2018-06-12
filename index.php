@@ -17,43 +17,33 @@ get_header();
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
-
-		<?php
-		if ( have_posts() ) :
-
-			if ( is_home() && ! is_front_page() ) :
-				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
+			<!-- in here we want to display our featured products -->
+			<ul class="products">
 				<?php
-			endif;
-
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
-
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
-
-			endwhile;
-
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
+					$args = array(
+						'post_type' => 'product',
+						'posts_per_page' => 3,
+						'tax_query' => array(
+							array(
+								'taxonomy' => 'product_visibility',
+								'field'    => 'name',
+								'terms'    => 'featured',
+							),
+						),
+					);
+					$loop = new WP_Query( $args );
+					if ( $loop->have_posts() ) {
+						while ( $loop->have_posts() ) : $loop->the_post();
+							wc_get_template_part( 'content', 'product' );
+						endwhile;
+					} else {
+						echo __( 'No products found' );
+					}
+					wp_reset_postdata();
+				?>
+			</ul><!--/.products-->
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
 <?php
-get_sidebar();
 get_footer();
