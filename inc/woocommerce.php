@@ -17,9 +17,9 @@
  */
 function alterego_woocommerce_setup() {
 	add_theme_support( 'woocommerce' );
-	add_theme_support( 'wc-product-gallery-zoom' );
-	add_theme_support( 'wc-product-gallery-lightbox' );
-	add_theme_support( 'wc-product-gallery-slider' );
+	// add_theme_support( 'wc-product-gallery-zoom' );
+	// add_theme_support( 'wc-product-gallery-lightbox' );
+	// add_theme_support( 'wc-product-gallery-slider' );
 }
 add_action( 'after_setup_theme', 'alterego_woocommerce_setup' );
 
@@ -244,3 +244,41 @@ if ( ! function_exists( 'alterego_woocommerce_header_cart' ) ) {
 		<?php
 	}
 }
+
+// this function is going to find us the current category
+function get_category_id() {
+  // gets current category and returns the id from it 
+  $category = get_queried_object();
+  return $category->term_id;	
+}
+
+function category_header_background() {
+	// get the category id using our function above
+	$category_id = get_category_id();
+	// we want to get the custom field for our background color
+	// we do it by using the product category 
+	$bg_color = get_field('background_color', 'product_cat_' . $category_id);
+	// here we return the formatted background-color style
+	echo 'background-color: ' . $bg_color;
+}
+
+// here we have a hook that removes the sidebar from all our templates
+remove_action('woocommerce_sidebar', 'woocommerce_get_sidebar', 10);
+
+// here we have a hook that removes the add to cart button from our loop products
+remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
+
+// here we use a filter to return the full sized image
+// for our product archive images (vs. the low res version)
+add_filter( 'single_product_archive_thumbnail_size', function( $size ) {
+  return 'full';
+} );
+
+// here we remove the breadcrumbs on the archive/category page
+remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20);
+
+// here we remove the results count, ordering and notices
+// todo: remember to add the notices back in later
+remove_action('woocommerce_before_shop_loop', 'wc_print_notices', 10);
+remove_action('woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
+remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30);

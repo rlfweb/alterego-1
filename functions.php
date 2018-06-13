@@ -128,13 +128,8 @@ function alterego_scripts() {
 
 	wp_enqueue_style( 'alterego-custom', get_template_directory_uri() . '/css/custom.css');
 
-	wp_enqueue_script( 'alterego-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	wp_enqueue_script( 'alterego-marquee', get_template_directory_uri() . '/js/marquee.js' );
 
-	wp_enqueue_script( 'alterego-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
 }
 add_action( 'wp_enqueue_scripts', 'alterego_scripts' );
 

@@ -17,6 +17,12 @@ get_header();
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
+			<!-- here we have our scrolling banner text -->
+			<h1 class="woocommerce-products-header__title page-title">
+				<span class="marquee">
+					New Arrivals
+				</span>
+			</h1>
 			<!-- in here we want to display our featured products -->
 			<ul class="products">
 				<?php
