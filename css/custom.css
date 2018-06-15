@@ -110,3 +110,57 @@ body {
   font-size: 32px;
   padding: 32px;
 }
+
+/* 
+
+1. when we hover over our navigation, fade out all the links
+2. for the particular link that we’re hovering on, keep it faded in
+3. when we’re on a particular category, keep that link item fade in too 
+
+*/
+
+.main-menu .menu-item a {
+  transition: opacity .2s ease;
+}
+
+.archive .main-menu .menu-item a,
+.main-menu:hover .menu-item a {
+  opacity: 0.25;
+}
+
+.main-menu .menu-item.current-menu-item a,
+.main-menu .menu-item:hover a {
+  opacity: 1;
+}
+
+/* here we style up our product page */
+
+.single-product .product {
+  display: flex;
+  padding: 32px;
+}
+
+/* this stretches the image to fill the available space */
+.woocommerce-product-gallery {
+  flex: auto;
+}
+
+/* with our product summary we want to constrain the width and also
+add some padding to the left hand side */
+
+.single-product .summary {
+  max-width: 390px;
+  padding-left: 64px;
+}
+
+/* here we write some basic styles for our static pages */
+
+.page-content {
+  max-width: 1220px;
+}
+
+.header-page {
+  background-color: #FBBB28;
+  padding: 32px 64px;
+  margin-bottom: 64px;
+}

@@ -17,9 +17,9 @@
  */
 function alterego_woocommerce_setup() {
 	add_theme_support( 'woocommerce' );
-	add_theme_support( 'wc-product-gallery-zoom' );
-	add_theme_support( 'wc-product-gallery-lightbox' );
-	add_theme_support( 'wc-product-gallery-slider' );
+	// add_theme_support( 'wc-product-gallery-zoom' );
+	// add_theme_support( 'wc-product-gallery-lightbox' );
+	// add_theme_support( 'wc-product-gallery-slider' );
 }
 add_action( 'after_setup_theme', 'alterego_woocommerce_setup' );
 
@@ -277,8 +277,47 @@ add_filter( 'single_product_archive_thumbnail_size', function( $size ) {
 // here we remove the breadcrumbs on the archive/category page
 remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20);
 
-// here we remove the results count, ordering and notices
-// todo: remember to add the notices back in later
+// here we remove the notices because we want to display them elsewhere
 remove_action('woocommerce_before_shop_loop', 'wc_print_notices', 10);
+remove_action('woocommerce_before_single_product', 'wc_print_notices', 10);
+
+// here we remove the results count, ordering and notices
 remove_action('woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
 remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30);
+
+function get_category_image($term) {
+	// we get our current category id
+	$category_id = get_category_id();
+	// here we need to check we actually have a current category
+	// if not, we are going to grab the default category using 
+	// the $term variable
+	if (empty($category_id)) {
+		// here we find the category by its slug
+		$category = get_term_by( 'slug', $term, 'product_cat' );
+		// then we grab the term id from the category and overwrite
+		// the $category_id variable
+		$category_id = $category->term_id;
+	}
+	$thumbnail_id = get_woocommerce_term_meta( $category_id, 'thumbnail_id', true );
+	// here we return our category image url
+	echo wp_get_attachment_url($thumbnail_id);
+}
+
+// here we remove the extra meta (for color/size etc) from 
+// our product page
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+
+// here we remove the product summary and info tabs
+remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10);
+
+// here we remove the related products (we’ll add these in
+// separately later)
+remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20);
+
+// here we write a function that gets us the custom
+// background color for our product
+function single_header_background() {
+	$post_id->ID;
+	$bg_color = get_field('background_color', $post_id);
+	echo 'background-color:' . $bg_color;
+}
