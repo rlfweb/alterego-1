@@ -6,16 +6,13 @@ body {
 }
 
 .site-header {
-  background-color: #FB7915;
-}
-
-.main-navigation {
-  margin: 32px 0 48px 64px;
+  background-color: #fb7915;
 }
 
 .main-menu a {
   display: block;
-  font-size: 32px;
+  /* here we make our navigation text 20px by default */
+  font-size: 20px;
   text-decoration: none;
   color: #fff;
   line-height: 1.5;
@@ -30,17 +27,19 @@ body {
 }
 
 .logo {
-  width: 330px;
+  max-width: 330px;
 }
 
 .products {
   padding: 0;
   margin: 0;
   display: flex;
+  flex-wrap: wrap;
   list-style: none;
 }
 
-.product a {
+/* here we only style up products in the product loop */
+.products .product a {
   display: block;
   padding: 32px;
   text-decoration: none;
@@ -65,7 +64,7 @@ body {
 
 /* fade in our product info when we hover a product */
 .product:hover .product-info {
-  opacity: 1
+  opacity: 1;
 }
 
 .product-info .woocommerce-loop-product__title {
@@ -78,7 +77,6 @@ body {
 .product-info .price {
   font-size: 20px;
 }
-
 
 .woocommerce-products-header__title {
   /* flex things so we can display them as boxes side by side nicely */
@@ -107,8 +105,8 @@ body {
   animation: marquee 2s linear infinite;
   display: block;
   line-height: 1;
-  font-size: 32px;
-  padding: 32px;
+  font-size: 20px;
+  padding: 20px;
 }
 
 /* 
@@ -120,7 +118,7 @@ body {
 */
 
 .main-menu .menu-item a {
-  transition: opacity .2s ease;
+  transition: opacity 0.2s ease;
 }
 
 .archive .main-menu .menu-item a,
@@ -160,7 +158,44 @@ add some padding to the left hand side */
 }
 
 .header-page {
-  background-color: #FBBB28;
+  background-color: #fbbb28;
   padding: 32px 64px;
   margin-bottom: 64px;
+}
+
+/* footer styles */
+/* todo: remember to style up the footer with responsive styles too */
+
+.site-footer li {
+  /* 1rem is equal to 16px */
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.site-footer a {
+  display: block;
+  color: #000;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+/* our product sale price */
+.price ins {
+  text-decoration: none;
+}
+
+/* styles for our search + cart box */
+.search-meta {
+  top: 3rem;
+  right: 3rem;
+}
+
+@media (min-width: 60em) {
+  .main-menu a {
+    font-size: 32px;
+  }
+  .marquee {
+    font-size: 32px;
+    padding: 32px;
+  }
 }

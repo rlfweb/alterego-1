@@ -26,7 +26,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 ?>
 
 <!-- here we add our custom background color to our products -->
-<li <?php wc_product_class('w-third relative'); ?> style="background-color: <?php the_field('background_color'); ?>">
+<li <?php wc_product_class('w-third-ns relative'); ?> style="background-color: <?php the_field('background_color'); ?>">
 	<?php
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.

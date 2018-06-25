@@ -43,7 +43,7 @@
 		
 		<!-- here we grab the custom field from our category and display 
 		the color an inline style -->
-		<header id="masthead" class="site-header flex" style="<?php category_header_background(); ?>">
+		<header id="masthead" class="site-header flex-ns" style="<?php category_header_background(); ?>">
 
 			<!-- here we include our category navigation componenent -->
 			<?php get_template_part('template-parts/category-navigation'); ?>

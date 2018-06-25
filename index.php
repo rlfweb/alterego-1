@@ -29,6 +29,9 @@ get_header();
 					$args = array(
 						'post_type' => 'product',
 						'posts_per_page' => 3,
+						// this lets us manually sort products for the homepage
+						'orderby' => 'menu_order',
+						'order' => 'ASC',
 						'tax_query' => array(
 							array(
 								'taxonomy' => 'product_visibility',
@@ -48,6 +51,13 @@ get_header();
 					wp_reset_postdata();
 				?>
 			</ul><!--/.products-->
+			
+			<div class="home-video">
+				<!-- in here goes our video which loops and autoplays -->
+				<video src="<?php echo get_template_directory_uri() . '/images/alter-ego-video-SD.mp4'; ?>" class="db w-100 h-auto" autoplay loop></video>
+			</div>
+
+
 		</main><!-- #main -->
 	</div><!-- #primary -->
 

@@ -31,6 +31,8 @@ if ( post_password_required() ) {
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class(); ?>>
 
+	<?php get_template_part('template-parts/header-search'); ?>
+
 	<?php
 		/**
 		 * Hook: woocommerce_before_single_product_summary.
@@ -39,6 +41,7 @@ if ( post_password_required() ) {
 		 * @hooked woocommerce_show_product_images - 20
 		 */
 		do_action( 'woocommerce_before_single_product_summary' );
+
 	?>
 
 	<div class="summary entry-summary">

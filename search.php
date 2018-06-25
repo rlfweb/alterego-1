@@ -1,6 +1,7 @@
 <?php
 /**
  * The template for displaying search results pages
+ * Template Name: Search Page
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
  *
@@ -13,43 +14,30 @@ get_header();
 	<section id="primary" class="content-area">
 		<main id="main" class="site-main">
 
-		<?php if ( have_posts() ) : ?>
-
+		<!-- if we have a search query and some results -->
+		<?php if ( have_posts() and get_search_query() ) : ?>
 			<header class="page-header">
 				<h1 class="page-title">
 					<?php
-					/* translators: %s: search query. */
 					printf( esc_html__( 'Search Results for: %s', 'alterego' ), '<span>' . get_search_query() . '</span>' );
 					?>
 				</h1>
 			</header><!-- .page-header -->
+			<ul class="products">
+				<?php while ( have_posts() and get_search_query() ) : the_post();
+					wc_get_template_part( 'content', 'product' );
+				endwhile; ?>
+			</ul>
+		<?php endif; ?>
 
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
-
-				/**
-				 * Run the loop for the search to output the results.
-				 * If you want to overload this in a child theme then include a file
-				 * called content-search.php and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', 'search' );
-
-			endwhile;
-
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
+		<!-- if we no search query, show the search form -->
+		<?php if ( !get_search_query() or !have_posts() ) : ?>
+			<h1 class="page-title">Search</h1>
+			<?php get_search_form(); ?>
+		<?php endif; ?>
 
 		</main><!-- #main -->
 	</section><!-- #primary -->
 
 <?php
-get_sidebar();
 get_footer();
