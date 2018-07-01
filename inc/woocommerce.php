@@ -335,3 +335,20 @@ function cart_url() {
   global $woocommerce;
   echo $woocommerce->cart->get_cart_url();
 }
+
+// here we get our product background color
+function cart_background_color($post_id) {
+  $bg_color = get_field('background_color', $post_id);
+  echo 'background-color:' . $bg_color;
+}
+
+// here we replace our x symbol with a proper trash icon
+
+add_filter('woocommerce_cart_item_remove_link', 'remove_icon_and_add_text', 10, 2);
+
+function remove_icon_and_add_text($string, $cart_item_key) {
+  $string = str_replace('class="remove"', '', $string);
+  $icon_url = get_template_directory_uri() . '/images/trash.svg';
+  $trash_icon = "<img src={$icon_url}>";
+  return str_replace('&times;', $trash_icon, $string);
+}
