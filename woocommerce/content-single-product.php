@@ -29,6 +29,16 @@ if ( post_password_required() ) {
 	return;
 }
 ?>
+
+<!-- here we make a custom style for our button color
+using the custom field background color from our product -->
+<style>
+	.summary .button {
+		color: <?php the_field('background_color'); ?> !important;
+	}
+</style>
+
+
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class(); ?>>
 
 	<?php get_template_part('template-parts/header-search'); ?>

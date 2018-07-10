@@ -5,6 +5,14 @@ body {
   color: #000;
 }
 
+body,
+input,
+select,
+textarea {
+  /* this smooths our font edges so they are less jagged */
+  -webkit-font-smoothing: antialiased;
+}
+
 a {
   color: #000;
   text-decoration: none;
@@ -283,6 +291,46 @@ th {
   padding-bottom: 1.5rem;
 }
 
+/* product page styles */
+
+.summary .product_title {
+  color: #fff;
+  font-family: 'lunchtype24expanded_medium', sans-serif;
+  font-size: 2rem;
+  line-height: 1;
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+.summary .price {
+  font-size: 1.5rem;
+  color: #fff;
+  line-height: 1;
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+.summary .woocommerce-product-details__short-description {
+  color: #fff;
+  line-height: 1.333;
+  margin-bottom: 2rem;
+}
+
+.summary .p1 {
+  margin: 0;
+}
+
+.summary .quantity {
+  display: none;
+}
+
+.summary .button {
+  background-color: #fff;
+  color: #000;
+  /* todo: make the button color dynamic 
+  with the background of the product */
+}
+
 /* styles that get applied only below 40em width */
 @media (max-width: 40em) {
   .product-thumbnail {
@@ -326,5 +374,8 @@ th {
   .marquee {
     font-size: 32px;
     padding: 32px;
+  }
+  .summary .product_title {
+    font-size: 3rem;
   }
 }
