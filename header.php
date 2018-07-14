@@ -26,12 +26,8 @@
 	<!-- firstly we check to see if there are any notices, and if
 	there are we display them -->
 	<?php if ( wc_notice_count() ) : ?>
-
 		<!-- here we print out our notifications/flash messages -->
-		<div class="pa3 tc">
-			<?php wc_print_notices(); ?>
-		</div>
-
+		<?php wc_print_notices(); ?>
 	<?php endif; ?>
 
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'alterego' ); ?></a>
@@ -43,7 +39,7 @@
 		
 		<!-- here we grab the custom field from our category and display 
 		the color an inline style -->
-		<header id="masthead" class="site-header flex-ns" style="<?php category_header_background(); ?>">
+		<header id="masthead" class="site-header flex-ns relative" style="<?php category_header_background(); ?>">
 
 			<!-- here we include our category navigation componenent -->
 			<?php get_template_part('template-parts/category-navigation'); ?>
@@ -58,7 +54,7 @@
 	<?php elseif (!is_product()) : ?>
 
 		<?php get_template_part('template-parts/page-header'); ?>
-
+		
 	<?php endif; ?>
 
 	<div id="content" class="site-content">

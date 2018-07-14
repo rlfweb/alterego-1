@@ -39,9 +39,7 @@ using the custom field background color from our product -->
 </style>
 
 
-<div id="product-<?php the_ID(); ?>" <?php wc_product_class(); ?>>
-
-	<?php get_template_part('template-parts/header-search'); ?>
+<div id="product-<?php the_ID(); ?>" <?php wc_product_class('flex-ns items-center ma4-l pa3'); ?>>
 
 	<?php
 		/**
@@ -54,7 +52,10 @@ using the custom field background color from our product -->
 
 	?>
 
-	<div class="summary entry-summary">
+	<div class="summary entry-summary pl5-l">
+		
+		<?php get_template_part('template-parts/header-search'); ?>
+
 		<?php
 			/**
 			 * Hook: woocommerce_single_product_summary.

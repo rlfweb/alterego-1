@@ -352,3 +352,27 @@ function remove_icon_and_add_text($string, $cart_item_key) {
   $trash_icon = "<img src={$icon_url}>";
   return str_replace('&times;', $trash_icon, $string);
 }
+
+// this filter removes the 'Select an option' default option
+// with our variation select elements
+add_filter( 'woocommerce_dropdown_variation_attribute_options_args', 'dropdown_variation_attribute_options', 10, 1 );
+
+function dropdown_variation_attribute_options( $args ){
+  $args['show_option_none'] = __( '' );
+  return $args;
+}
+
+// this filter swaps the order of our flash message around
+// so that the button is on the right and the text on the left
+add_filter ( 'wc_add_to_cart_message', 'wc_add_to_cart_message_filter', 10, 2 );
+
+function wc_add_to_cart_message_filter($message, $product_id = null) {
+  $titles[] = get_the_title( $product_id );
+  $titles = array_filter( $titles );
+  $added_text = sprintf( _n( '%s has been added to your cart.', '%s have been added to your cart.', sizeof( $titles ), 'woocommerce' ), wc_format_list_of_items( $titles ) );
+  $message = sprintf( '%s <a href="%s" class="button">%s</a>',
+  esc_html( $added_text ),
+  esc_url( wc_get_page_permalink( 'cart' ) ),
+  esc_html__( 'View Cart', 'woocommerce' ));
+  return $message;
+}

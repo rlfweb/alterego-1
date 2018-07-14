@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header( 'shop' ); ?>
 
 	<!-- here we include our header on the individual product page itself -->
-	<header id="masthead" class="site-header flex" style="<?php single_header_background(); ?>">
+	<header id="masthead" class="site-header flex-ns relative" style="<?php single_header_background(); ?>">
 
 		<!-- here we are going to include our navigation -->
 		<?php get_template_part('template-parts/category-navigation'); ?>
