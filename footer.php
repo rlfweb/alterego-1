@@ -13,7 +13,7 @@
 
 	</div><!-- #content -->
 
-	<footer id="colophon" class="site-footer flex justify-between regular pv4 ph3">
+	<footer id="colophon" class="site-footer flex-l justify-between regular pa3 pv4-l mt4">
 		<!-- here we add our navigations that we registered via 
 		our functions.php and we can now manage these through
 		the dashboard -->
@@ -21,7 +21,7 @@
 			wp_nav_menu( array(
 			'theme_location' => 'menu-2',
 			'menu_id'        => 'footer-menu',
-			'menu_class'		 => 'footer-menu list flex pa0 ma0'
+			'menu_class'		 => 'footer-menu list flex pa0 ma0 mb3 mb0-l'
 			) );
 		?>
 		<?php

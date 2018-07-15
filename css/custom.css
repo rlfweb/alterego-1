@@ -504,6 +504,12 @@ fieldset {
   padding-top: 1rem;
 }
 
+/* footer styles */
+.site-footer {
+  border-top: solid 1px rgba(0, 0, 0, 0.2);
+  font-size: 0.75rem;
+}
+
 /* styles that get applied only below 40em width */
 @media (max-width: 40em) {
   .product-thumbnail {
@@ -537,6 +543,9 @@ fieldset {
   .cart_totals {
     max-width: 360px;
     min-width: 300px;
+  }
+  .site-footer {
+    font-size: 1rem;
   }
 }
 
