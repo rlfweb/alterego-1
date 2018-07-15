@@ -16,7 +16,7 @@ get_header();
 
 		<!-- if we have a search query and some results -->
 		<?php if ( have_posts() and get_search_query() ) : ?>
-			<header class="page-header">
+			<header class="page-header pa3 measure-wide center">
 				<h1 class="page-title">
 					<?php
 					printf( esc_html__( 'Search Results for: %s', 'alterego' ), '<span>' . get_search_query() . '</span>' );
@@ -32,8 +32,10 @@ get_header();
 
 		<!-- if we no search query, show the search form -->
 		<?php if ( !get_search_query() or !have_posts() ) : ?>
-			<h1 class="page-title">Search</h1>
-			<?php get_search_form(); ?>
+			<div class="pa3 measure-wide center">
+				<h1 class="page-title">Search</h1>
+				<?php get_search_form(); ?>
+			</div>
 		<?php endif; ?>
 
 		</main><!-- #main -->

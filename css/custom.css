@@ -13,6 +13,14 @@ textarea {
   -webkit-font-smoothing: antialiased;
 }
 
+/* this removes the default blue outline when 
+the elements are clicked on */
+input,
+textarea,
+button {
+  outline: none;
+}
+
 a {
   color: #000;
   text-decoration: none;
@@ -129,7 +137,7 @@ input::-webkit-inner-spin-button {
 }
 
 .marquee {
-  /* animation: marquee 2s linear infinite; */
+  animation: marquee 2s linear infinite;
   display: block;
   line-height: 1;
   font-size: 20px;
@@ -282,7 +290,9 @@ th {
   cursor: pointer;
 }
 
-.input-text {
+.input-text,
+.wpforms-field input,
+.wpforms-field textarea {
   height: 2rem;
   padding: 0 0.5rem !important;
   font-size: 1rem;
@@ -410,7 +420,8 @@ todo: homework challenge to get these looking like the final design */
 }
 
 /* styles for our checkout */
-.woocommerce-checkout .page-content {
+.woocommerce-checkout .page-content,
+.static-page {
   max-width: 580px;
 }
 
@@ -423,7 +434,8 @@ todo: homework challenge to get these looking like the final design */
   color: #fff;
 }
 
-.woocommerce-checkout h3 {
+.woocommerce-checkout h3,
+.woocommerce-order-details h2 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
   margin-top: 0;
@@ -504,10 +516,47 @@ fieldset {
   padding-top: 1rem;
 }
 
+.shipping ul {
+  padding: 0;
+  list-style: none;
+  margin: 0;
+}
+
+/* order confirmation page */
+.woocommerce-order-overview {
+  padding-left: 0;
+  list-style: none;
+  margin-top: 0;
+}
+
+.woocommerce-order-details h2 {
+  margin-top: 1.5rem;
+}
+
+address {
+  font-style: normal;
+}
+
 /* footer styles */
 .site-footer {
   border-top: solid 1px rgba(0, 0, 0, 0.2);
   font-size: 0.75rem;
+}
+
+.home .site-footer,
+.archive .site-footer,
+.single-product .site-footer {
+  margin-top: 0;
+}
+
+/* contact form styles */
+.wpforms-error {
+  padding-top: 0.5rem;
+  font-size: 1rem;
+}
+
+.wpforms-field-hp {
+  display: none;
 }
 
 /* styles that get applied only below 40em width */
